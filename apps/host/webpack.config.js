@@ -48,11 +48,11 @@ module.exports = {
       shared: {
         react: {
           singleton: true,
-          requiredVersion: "^18.0.2",
+          requiredVersion: "18.0.2",
         },
         "react-dom": {
           singleton: true,
-          requiredVersion: "^18.0.2",
+          requiredVersion: "18.0.2",
         },
       },
     }),
