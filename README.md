@@ -57,9 +57,9 @@ singleton 옵션을 주면 모듈은 딱 한번만 로드되는것이 보장된�
  },
 ```
 
-singleton 옵션을 주는 경우, 해당 패키지의 **가장 먼저 평가되는 버전**(initialization phase)으로 shared로 공유받는 패키지의 버전이 통일된다. 주로 Host의 패키지 버전일테다. 이런 경우에도 사실 breacking change 등으로 인터페이스가 깨지지만 않는다면 런타임에 문제는 없다.
+singleton 옵션을 주는 경우, 해당 패키지의 **가장 먼저 평가되는 버전**(initialization phase)으로 shared로 공유받는 패키지의 버전이 통일된다. 주로 Host의 패키지 버전일테다. 이런 경우에도 사실 breaking change 등으로 인터페이스가 깨지지만 않는다면 런타임에 문제는 없다.
 
-`strictVersion:true` 옵션을 같이 주면 버전이 uncompat한 경우 에러를 뿜는다. breacking change 등으로 인터페이스가 깨지는 것을 방지하기 위한 용도로 활용할 수 있다.
+`strictVersion:true` 옵션을 같이 주면 버전이 uncompat한 경우 에러를 뿜는다. breaking change 등으로 인터페이스가 깨지는 것을 방지하기 위한 용도로 활용할 수 있다.
 
 ```ts
  shared: {
@@ -103,17 +103,23 @@ singleton 옵션을 주는 경우, 해당 패키지의 **가장 먼저 평가되
 
 근데 현실은 녹록치 않기 때문에, 이상적인 모노레포 패키지 관리가 이뤄지지 않는 경우나 패키지가 제공하는 API가 특별해서 감안해야하는 문제가 생길수도 있음. 다음과 같다.
 
-### 전체 앱에서 하나여야만 하는 무언가의 경우(Context API)
+### 전체 앱에서 하나여야만 하는 무언가를 제공하는 shared 의존성의 경우(Context API)
 
 Host와 Remote간 Context API등으로 데이터를 공유할때는 **semver mismatch**가 아예 일어나서는 안되는데, singleton인게 보장되어야 하기 때문이다. 그래야 단일한 provider와 단일한 consumer가 존재 가능하고 참조가 올바르게 진행된다.
 
 ### workspace 환경에서 버저닝으로 패키지를 관리하지 않는 경우
 
-version 필드가 아예 없는 경우라면 어떨까? 근데 그게 말이 되나..
+먼저, 버전으로 변경 추적이 안 되는 경우다. 패키지의 변경에 따라서 같이 version 필드가 바뀌지 않는다면 버전은 그대로 유지한채 패키지가 바뀌어있을 것이다. 이때, 이러한 패키지를 shared로 가진 remote와 host 모두가 시간차이를 두고 배포되면, 버전은 똑같지만 그 사이에서 breaking change가 생겨버려 배포시에 다운타임이 생길 수 있다.
+
+이상하긴 한데 version 필드가 아예 없는 경우라면 어떨까?
 
 ### 특정 패키지를 래핑해서 shared로 쓰는 경우
 
+특정 패키지를 래핑한 패키지를 shared로 쓰는 경우, 래핑한 패키지에 해당하는 코드만 shared로 떨어지고 래핑된 패키지는 상관없다.
+
 ### package.json의 버전과 shared 버전의 관계
+
+shared의 버전과 Package.json에 명시된 버전부터 틀려버리면 어떤 일이 발생할까?
 
 ## Reference
 
