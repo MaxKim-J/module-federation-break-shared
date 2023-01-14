@@ -89,7 +89,8 @@ singleton 옵션을 주는 경우, 해당 패키지의 **가장 먼저 평가되
 - `requiredVersion`
 - `strictVersion`
 - `singleton`
-- `eager`
+- `eager`:
+- `version`:
 
 #### 챔고2) Semver 기호
 

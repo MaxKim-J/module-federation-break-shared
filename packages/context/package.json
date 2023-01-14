@@ -1,9 +1,10 @@
 {
-  "name": "@max-poc/packages-provider",
+  "name": "@max-poc/packages-context",
   "version": "0.0.0",
   "private": true,
-  "module": "dist/index.js",
-  "types": "./src/index.tsx",
+  "main": "src/index.tsx",
+  "module": "src/index.tsx",
+  "types": "src/index.tsx",
   "scripts": {
     "build": "swc src/index.tsx -d dist"
   },

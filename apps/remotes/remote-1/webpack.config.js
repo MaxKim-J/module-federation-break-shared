@@ -54,6 +54,12 @@ module.exports = {
           singleton: true,
           requiredVersion: "18.0.2",
         },
+        "@max-poc/packages-calculator": {
+          version: "0.0.0",
+        },
+        "@max-poc/packages-provider": {
+          version: "0.0.0",
+        },
       },
     }),
   ],
