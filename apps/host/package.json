@@ -1,0 +1,22 @@
+{
+  "name": "@max-poc/apps-host",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "webpack serve",
+    "build": "webpack --mode production"
+  },
+  "dependencies": {
+    "react": "^18.0.2",
+    "react-dom": "^18.0.2"
+  },
+  "devDependencies": {
+    "@swc/core": "^1.3.26",
+    "html-webpack-plugin": "5.5.0",
+    "swc-loader": "^0.2.3",
+    "typescript": "^4.9.4",
+    "webpack": "5.72.1",
+    "webpack-cli": "4.10.0",
+    "webpack-dev-server": "4.9.3"
+  }
+}
